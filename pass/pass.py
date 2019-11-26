@@ -8,6 +8,7 @@ import sys
 import os
 import datetime
 from dateutil import tz
+from logging.handlers import RotatingFileHandler
 
 from pasite import PASite
 from profiler import Profiler
@@ -19,7 +20,8 @@ def create_logger():
     logger_name = os.path.basename(sys.argv[0]).split('.')[0]
     logger = logging.getLogger(logger_name)
     logger.setLevel(logging.INFO)
-    logfilehandler = logging.RotatingFileHandler(
+    #logfilehandler = logging.RotatingFileHandler(
+    logfilehandler = RotatingFileHandler(
         f'.\\{logger_name}.log', maxBytes=1000000, backupCount=2)
     logger.addHandler(logfilehandler)
     return logger
